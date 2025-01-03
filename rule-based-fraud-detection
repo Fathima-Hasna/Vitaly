@@ -1,4 +1,21 @@
-import time
+# Predefined global threshold for high-value transactions
+THRESHOLD_AMOUNT = 1000
+
+# Sample transaction data
+transactions = [
+    {"transaction_id": 1, "user_id": 101, "amount": 500},
+    {"transaction_id": 2, "user_id": 102, "amount": 1500},
+    {"transaction_id": 3, "user_id": 103, "amount": 200},
+    {"transaction_id": 4, "user_id": 104, "amount": 2500},
+    {"transaction_id": 5, "user_id": 105, "amount": 800},
+]
+
+# Detect high-value transactions
+for transaction in transactions:
+    if transaction["amount"] > THRESHOLD_AMOUNT:  
+        print(f"⚠ ALERT: High-value transaction detected! Transaction ID: {transaction['transaction_id']}, Amount: ${transaction['amount']}")
+    else:
+        print(f"Transaction ID: {transaction['transaction_id']} is normal. Amount: ${transaction['amount']}")import time
 from collections import defaultdict
 
 # 1. Sample transaction stream
