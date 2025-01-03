@@ -1,31 +1,30 @@
-# 1. Define a list of transactions
+import time
+
+# 1. Sample transaction data (simulating real-time transactions)
 transactions = [
-    {"transaction_id": 1, "amount": 500, "location": "Oman", "device": "mobile"},
-    {"transaction_id": 2, "amount": 50, "location": "India", "device": "mobile"},
-    {"transaction_id": 3, "amount": 10000, "location": "Kuwait", "device": "desktop"},
-    {"transaction_id": 4, "amount": 150, "location": "Bangladesh", "device": "desktop"},
-    {"transaction_id": 5, "amount": 3000, "location": "UAE", "device": "mobile"},
+    {"transaction_id": 1, "amount": 1200, "location": "New York"},
+    {"transaction_id": 2, "amount": 50, "location": "Los Angeles"},
+    {"transaction_id": 3, "amount": 4000, "location": "London"},
+    {"transaction_id": 4, "amount": 200, "location": "New York"},
+    {"transaction_id": 5, "amount": 3200, "location": "Tokyo"},
 ]
 
-# 2. Define fraud detection rules
+# 2. Define fraud detection rule
 def is_suspicious(transaction):
-    # Rule 1: Amount greater than $1000
-    if transaction["amount"] > 1000:
+    # Rule: Flag transactions with an amount greater than $3000
+    if transaction["amount"] > 3000:
         return True
-
-    # Rule 2: Unusual location (not "Russia" or "China")
-    if transaction["location"] not in ["Russia", "China"]:
-        return True
-
     return False
 
-# 3. Apply rules to flag suspicious transactions
-suspicious_transactions = []
+# 3. Real-time transaction monitoring
+print("Monitoring transactions...\n")
 for transaction in transactions:
+    print(f"Processing Transaction: {transaction}")
+    
+    # Check if the transaction is suspicious
     if is_suspicious(transaction):
-        suspicious_transactions.append(transaction)
+        print(f"⚠️ ALERT: Suspicious transaction detected! Transaction ID: {transaction['transaction_id']}")
+    
+    # Simulate real-time delay
+    time.sleep(2)
 
-# 4. Print results
-print("Suspicious Transactions:")
-for transaction in suspicious_transactions:
-    print(transaction)
