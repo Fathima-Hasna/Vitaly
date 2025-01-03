@@ -1,31 +1,29 @@
-# 1. Define a list of transactions
+# User profiles with typical locations
+user_profiles = {
+    101: ["Oman", "UAE"],
+    102: ["India", "Saudi Arabia"],
+    103: ["Kuwait"],
+}
+
+# Sample transaction data
 transactions = [
-    {"transaction_id": 1, "amount": 500, "location": "Oman", "device": "mobile"},
-    {"transaction_id": 2, "amount": 50, "location": "India", "device": "mobile"},
-    {"transaction_id": 3, "amount": 10000, "location": "Kuwait", "device": "desktop"},
-    {"transaction_id": 4, "amount": 150, "location": "Bangladesh", "device": "desktop"},
-    {"transaction_id": 5, "amount": 3000, "location": "UAE", "device": "mobile"},
+    {"user_id": 101, "transaction_id": 1, "location": "New York"},
+    {"user_id": 101, "transaction_id": 2, "location": "Oman"},
+    {"user_id": 102, "transaction_id": 3, "location": "London"},
+    {"user_id": 102, "transaction_id": 4, "location": "Saudi Arabia"},
+    {"user_id": 103, "transaction_id": 5, "location": "Tokyo"},
+    {"user_id": 103, "transaction_id": 6, "location": "Kuwait"},
 ]
 
-# 2. Define fraud detection rules
-def is_suspicious(transaction):
-    # Rule 1: Amount greater than $1000
-    if transaction["amount"] > 1000:
-        return True
-
-    # Rule 2: Unusual location (not "Russia" or "China")
-    if transaction["location"] not in ["Russia", "China"]:
-        return True
-
-    return False
-
-# 3. Apply rules to flag suspicious transactions
-suspicious_transactions = []
+# Detect unusual locations
 for transaction in transactions:
-    if is_suspicious(transaction):
-        suspicious_transactions.append(transaction)
-
-# 4. Print results
-print("Suspicious Transactions:")
-for transaction in suspicious_transactions:
-    print(transaction)
+    user_id = transaction["user_id"]
+    location = transaction["location"]
+    
+    if user_id in user_profiles:  # Check if user profile exists
+        if location not in user_profiles[user_id]:  # Check for unusual location
+            print(f"⚠️ ALERT: Unusual location detected! User {user_id}, Location: {location}")
+        else:
+            print(f"User {user_id}: Normal transaction at {location}.")
+    else:
+        print(f"User {user_id} has no location data available.")
