@@ -12,7 +12,7 @@ transactions = [
 
 # Detect high-value transactions
 for transaction in transactions:
-    if transaction["amount"] >= THRESHOLD_AMOUNT:  
+    if transaction["amount"] > THRESHOLD_AMOUNT:  
         print(f"⚠ ALERT: High-value transaction detected! Transaction ID: {transaction['transaction_id']}, Amount: ${transaction['amount']}")
     else:
         print(f"Transaction ID: {transaction['transaction_id']} is normal. Amount: ${transaction['amount']}")import time
