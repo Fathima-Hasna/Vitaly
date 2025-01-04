@@ -2,17 +2,17 @@
 transactions = [
     {"transaction_id": 1, "amount": 500, "location": "Oman", "device": "mobile"},
     {"transaction_id": 2, "amount": 50, "location": "India", "device": "mobile"},
-    {"transaction_id": 3, "amount": 10000, "location": "Kuwait", "device": "desktop"},
+    {"transaction_id": 3, "amount": 10000, "location": "Russia", "device": "desktop"},
     {"transaction_id": 4, "amount": 150, "location": "Bangladesh", "device": "desktop"},
-    {"transaction_id": 5, "amount": 3000, "location": "UAE", "device": "mobile"},
+    {"transaction_id": 5, "amount": 3000, "location": "China", "device": "mobile"},
 ]
 # 2. Define fraud detection rules
 def is_suspicious(transaction):
     # Rule 1: Amount greater than $1000
     if transaction["amount"] > 1000:
         return True
-    # Rule 2: Unusual location (not "Russia" or "China")
-    if transaction["location"] not in ["Russia", "China"]:
+    # Rule 2: Unusual location (not "Oman" or "India" or "Bangladesh")
+    if transaction["location"] not in ["Oman", "India", "Bangladesh"]:
         return True
     return False
 # 3. Apply rules to flag suspicious transactions
